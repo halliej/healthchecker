@@ -23,6 +23,13 @@ running the application.
 `npm install -g mocha`   
 
 
+**Start Demo APIs**
+##
+Start the demo APIs before running the manual or automatic test:
+
+`node api-1.js`
+`node api-2.js`
+
 **Manual Operation**
 ##
 To run the test manually simply type: `mocha`. The test will run once and results will be 
@@ -52,7 +59,7 @@ will return:
 **Logging**
 ##
 When running in automatic mode log files are created for test status and test latency. These logs 
-are rotaed daily and can be found in the logs directory named:
+are rotated daily and can be found in the logs directory named:
 
 + *yyyy-mm-dd-teststatus.log*   - same status reported via the web endpoint
 + *yyyy-mm-dd-testlatency.log*  - time in milliseconds each test took to run
