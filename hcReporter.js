@@ -3,7 +3,6 @@ module.exports = hcReporter;
 const mocha = require('mocha');
 const winston = require('winston');
 
-const fs = require('fs');
 const env = process.env.NODE_ENV || 'development';
 const logDir = 'logs';
 

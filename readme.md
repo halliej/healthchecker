@@ -1,7 +1,7 @@
 # Healthchecker Proof of Concept
 
 This is a *proof of concept* application that demonstrates the feasibility of using the Mocha
-test framework to monitor the health of APIs. This application can easily be modified to 
+test framework to monitor the health of RESTful APIs. This application can easily be modified to 
 work with almost any group of endpoint URLs.  
 
 
@@ -27,8 +27,8 @@ running the application.
 ##
 Start the demo APIs before running the manual or automatic test:
 
-`node api-1.js`
-`node api-2.js`
++ `node api-1.js`
++ `node api-2.js`
 
 **Manual Operation**
 ##
