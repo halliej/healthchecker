@@ -1,0 +1,28 @@
+{
+  "name": "healthchecker",
+  "version": "1.0.0",
+  "description": "Test API healthcheck endpoints",
+  "author": "Hal DeLage",
+  "license": "MIT",
+  "keywords": [
+    "API",
+    "Healthcheck",
+    "Mocha"
+  ],
+  "main": "healthchecker.js",
+  "scripts": {
+    "start": "node healthchecker.js",
+    "test": "mocha",
+    "jshint": "grunt"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0"
+  },
+  "dependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^3.1.0",
+    "winston": "^2.2.0",
+    "winston-daily-rotate-file": "^1.3.1"
+  }
+}
