@@ -4,6 +4,10 @@
   "description": "Test API healthcheck endpoints",
   "author": "Hal DeLage",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/halliej/healthchecker"
+  },
   "keywords": [
     "API",
     "Healthcheck",
