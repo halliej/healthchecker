@@ -29,20 +29,20 @@ function hcReporter(runner) {
     passed: 0,
     failed: 0,
     msgs: []
-  }
+  };
 
-  runner.on('pass', function(test){
+  runner.on('pass', (test) => {
     results.passed++;
     logger.info(`Passed: ${test.fullTitle()} (${test.duration})ms`);
   });
 
-  runner.on('fail', function(test, err){
+  runner.on('fail', (test, err) => {
     results.failed++;
     results.msgs.push(test.fullTitle() + ': ' + test.err);
     logger.info(`Failed: ${test.fullTitle()} (${test.duration})ms`);
   });
 
-  runner.on('end', function(){
+  runner.on('end', () => {
     runner.testResults = results;
   });
 }
