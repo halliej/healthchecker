@@ -80,13 +80,12 @@ your test. Make sure the api variable is pointing to the correct test for your A
 change the labels as required. If you are familiar with Mocha you will know what to do. Otherwise
 run the test manually and you will see what you need to do. You may need to adjust the timeout
 value if your test takes more than 5 seconds to run. This is all standard Mocha stuff so refer
-to the docs if in doubt. You will probably also need to change the Chai assertions to match what your API
+to the docs if in doubt. You will probably also need to change the assertions to match what your API
 is returning.
 
 Now if you run mocha from the root of the project you should see the default spec report. If not
-you may have issues with the previous steps but you should be able to figure it out. The Mocha and
-Chai docs should help.
+you may have issues with the previous steps but you should be able to figure it out. The Mocha docs should help.
 
-Once you can successfully run your Moch test manually you can start automatic mode by typing:
+Once you can successfully run your Mocha test manually you can start automatic mode by typing:
 `node healthchecker.js`. In a production environment you will probably want to use a process manager
 such as pm2.

@@ -7,7 +7,7 @@ const logger = require('./logs.js');
 const env = process.env.NODE_ENV || 'development';
 
 let testInterval = 30000;   //how often test will be run
-let statusPort = 3000;      //webserver is listening on this port
+let statusPort = process.env.PORT || 3000;      //webserver is listening on this port
 let status = '{"passed":0,"failed":0,"msgs":[]}';   //default status
 
 //start doing stuff
@@ -18,7 +18,7 @@ logger.verbose(`Status will be reported on port ${statusPort}`);
 runTest();
 
 //autotest loop
-let interval = setInterval(function() {
+let interval = setInterval(() => {
     runTest();
 }, testInterval);
 
@@ -29,13 +29,13 @@ function runTest() {
             logger.error(err);
             return;
         }
-        status = stdout; 
+        status = stdout;
         logger.info(`${status.trim()}`);
     });
 }
 
 //results server
-http.createServer(function (request, response) {
+http.createServer( (request, response) => {
    response.writeHead(200, {'Content-Type': 'text/json'});
    response.end(status);
 }).listen(statusPort);
