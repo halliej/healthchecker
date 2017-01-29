@@ -1,14 +1,16 @@
 const axios = require('axios');
 const expect = require('expect');
+const describe = require('mocha').describe;
+const it = require('mocha').it;
 
-const props = require("./config.json");
-let options = props.api1;
+const props = require('./config.json');
+
+const options = props.api1;
 
 let url = `http://${options.host}`;
-url += (`${options.port}`)? `:${options.port}${options.path}`: `${options.path}`;
+url += (`${options.port}`) ? `:${options.port}${options.path}` : `${options.path}`;
 
 describe('API 1', () => {
-
   it('Healthcheck', (done) => {
     axios({
       method: 'get',
@@ -16,7 +18,6 @@ describe('API 1', () => {
     }).then((response) => {
       expect(response.status).toBe(200);
       done();
-    }).catch((e) => {done(e);});
+    }).catch((e) => { done(e); });
   });
-
 });

@@ -1,13 +1,13 @@
 const http = require('http');
-const cp = require("child_process");
+const cp = require('child_process');
 const process = require('process');
-const util = require('util');
-const logger = require('./logs.js');
+//const util = require('util');
+const logger = require('./logs');
 
-const env = process.env.NODE_ENV || 'development';
+//const env = process.env.NODE_ENV || 'development';
 
-let testInterval = 30000;   //how often test will be run
-let statusPort = process.env.PORT || 3000;      //webserver is listening on this port
+const testInterval = 30000;   //how often test will be run
+const statusPort = process.env.PORT || 3000;      //webserver is listening on this port
 let status = '{"passed":0,"failed":0,"msgs":[]}';   //default status
 
 //start doing stuff
@@ -18,13 +18,13 @@ logger.verbose(`Status will be reported on port ${statusPort}`);
 runTest();
 
 //autotest loop
-let interval = setInterval(() => {
+setInterval(() => {
     runTest();
 }, testInterval);
 
 //run the autotest as a seperate process
 function runTest() {
-    cp.exec('node ./autoTester', (err, stdout, stderr) => {
+    cp.exec('node ./autoTester', (err, stdout) => {
         if (err) {
             logger.error(err);
             return;
@@ -35,7 +35,7 @@ function runTest() {
 }
 
 //results server
-http.createServer( (request, response) => {
-   response.writeHead(200, {'Content-Type': 'text/json'});
+http.createServer((request, response) => {
+   response.writeHead(200, { 'Content-Type': 'text/json' });
    response.end(status);
 }).listen(statusPort);

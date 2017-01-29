@@ -1,11 +1,10 @@
 
-const Mocha = require('mocha'),
-    fs = require('fs'),
-    path = require('path'),
-    hcreporter = require('./hcReporter.js');
+const Mocha = require('mocha');
+const fs = require('fs');
+const path = require('path');
 
 // Instantiate a Mocha instance.
-let mocha = new Mocha({
+const mocha = new Mocha({
   reporter: 'hcReporter'
 });
 

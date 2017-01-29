@@ -1,10 +1,10 @@
 const http = require('http');
 
-let apiPort = 3002;
-let status = '{"status":"success"}';
+const apiPort = 3002;
+const status = '{"status":"success"}';
 
 http.createServer((request, response) => {
-   response.writeHead(200, {'Content-Type': 'text/json'});
+   response.writeHead(200, { 'Content-Type': 'text/json' });
    response.end(status);
 }).listen(apiPort);
 

@@ -1,17 +1,21 @@
+/* eslint prefer-template: 0 */
+/* eslint no-param-reassign: 0 */
 module.exports = hcReporter;
 
 const mocha = require('mocha');
 const winston = require('winston');
+const rotate = require('winston-daily-rotate-file');
 
-const env = process.env.NODE_ENV || 'development';
 const logDir = 'logs';
 
-const tsFormat = () => (new Date()).toLocaleTimeString('en-US',{timeZone:'America/New_York'});
-const msgFormat = (options) => (options.timestamp() +' '+ options.level.toUpperCase() +' '+ (undefined !== options.message ? options.message : '') +
-          (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : ''));
+const tsFormat = () => (new Date()).toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
+const msgFormat = (options) =>
+  (options.timestamp() + ' ' + options.level.toUpperCase() + ' ' +
+  (undefined !== options.message ? options.message : '') +
+  (options.meta && Object.keys(options.meta).length ? '\n\t' + JSON.stringify(options.meta) : ''));
 const logger = new (winston.Logger)({
   transports: [
-    new (require('winston-daily-rotate-file'))({
+    new rotate({
       filename: `${logDir}/-testlatency.log`,
       timestamp: tsFormat,
       datePattern: 'yyyy-MM-dd',
@@ -25,7 +29,7 @@ const logger = new (winston.Logger)({
 
 function hcReporter(runner) {
   mocha.reporters.Base.call(this, runner);
-  let results = {
+  const results = {
     passed: 0,
     failed: 0,
     msgs: []
@@ -36,7 +40,7 @@ function hcReporter(runner) {
     logger.info(`Passed: ${test.fullTitle()} (${test.duration})ms`);
   });
 
-  runner.on('fail', (test, err) => {
+  runner.on('fail', (test) => {
     results.failed++;
     results.msgs.push(test.fullTitle() + ': ' + test.err);
     logger.info(`Failed: ${test.fullTitle()} (${test.duration})ms`);
