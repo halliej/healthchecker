@@ -18,15 +18,16 @@ const msgFormat = (options) =>
   (undefined !== options.message ? options.message : '') +
   (options.meta && Object.keys(options.meta).length ? '\n\t' + JSON.stringify(options.meta) : ''));
 //create logger with console and 2 file transports
-const logger = new (winston.Logger)({
+
+const logger = winston.createLogger({
   transports: [
-    new (winston.transports.Console)({
-        timestamp: tsFormat,
-        colorize: true,
-        level: 'debug',
-        formatter: msgFormat
+    new winston.transports.Console({
+      timestamp: tsFormat,
+      colorize: true,
+      level: 'debug',
+      formatter: msgFormat
     }),
-    new rotate({
+    new (winston.transports.DailyRotateFile)({
       filename: `${logDir}/-teststatus.log`,
       timestamp: tsFormat,
       formatter: msgFormat,
@@ -35,7 +36,7 @@ const logger = new (winston.Logger)({
       prepend: true,
       json: false
     }),
-    new (winston.transports.File)({
+    new winston.transports.File({
       name: 'error-file',
       filename: `${logDir}/error.log`,
       level: 'error',
